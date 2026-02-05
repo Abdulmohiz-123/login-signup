@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Glass UI</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- Background Elements -->
+    <div class="circle circle-1" style="top: -100px; left: -100px;"></div>
+    <div class="circle circle-2" style="bottom: -100px; right: -100px;"></div>
+
+    <div class="dashboard-container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-layer-group"></i> GlassUI
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
+                <li><a href="#"><i class="fa-solid fa-wallet"></i> Wallet</a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+            </ul>
+
+            <button class="logout-btn" id="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="user-welcome">
+                    <h1>Hello, <span id="user-name-display">User</span>!</h1>
+                    <p>Welcome back to your dashboard.</p>
+                </div>
+
+                <div class="header-actions">
+                    <button class="theme-toggle-btn" id="theme-toggle" style="position: static; margin: 0;">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    
+                    <div class="user-profile">
+                        <div class="user-avatar">JD</div>
+                        <span class="user-name">John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-info">
+                        <h3>1,204</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #FF6B6B, #EE5253);"><i class="fa-solid fa-eye"></i></div>
+                    <div class="stat-info">
+                        <h3>34.5k</h3>
+                        <p>Daily Views</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #1DD1A1, #10AC84);"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div class="stat-info">
+                        <h3>$5,240</h3>
+                        <p>Total Revenue</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <h3 class="section-title">Recent Activity</h3>
+            <div class="recent-activity">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#12345</td>
+                            <td>Jane Smith</td>
+                            <td>Feb 5, 2026</td>
+                            <td>$120.00</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>#12346</td>
+                            <td>Mike Jordan</td>
+                            <td>Feb 4, 2026</td>
+                            <td>$54.00</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>#12347</td>
+                            <td>Sarah Con</td>
+                            <td>Feb 4, 2026</td>
+                            <td>$230.50</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

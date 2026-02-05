@@ -1,7 +1,48 @@
 document.addEventListener('DOMContentLoaded', () => {
     /* -------------------------------------------------------------------------- */
+    /*                                Theme Logic                                 */
+    /* -------------------------------------------------------------------------- */
+    const themeToggleBtns = document.querySelectorAll('#theme-toggle');
+    const body = document.body;
+    
+    // Check LocalStorage
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        body.setAttribute('data-theme', currentTheme);
+        updateThemeIcons(currentTheme);
+    }
+
+    function updateThemeIcons(theme) {
+        themeToggleBtns.forEach(btn => {
+            const icon = btn.querySelector('i');
+            if (theme === 'light') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    }
+
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                updateThemeIcons('dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                updateThemeIcons('light');
+            }
+        });
+    });
+
+    /* -------------------------------------------------------------------------- */
     /*                                DOM Elements                                */
     /* -------------------------------------------------------------------------- */
+    // Check if we are on Login Page
     const loginToggle = document.getElementById('login-toggle');
     const signupToggle = document.getElementById('signup-toggle');
     const toggleSlider = document.querySelector('.toggle-slider');
@@ -206,16 +247,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mock Submit Function
     function mockSubmit(btn, successMsg) {
         btn.classList.add('loading');
-
+        
         // Simulate API call
         setTimeout(() => {
             btn.classList.remove('loading');
-            alert(successMsg);
-            // Reset form
-            btn.closest('form').reset();
-            clearErrors();
-            if (btn.id === 'signup-btn') checkSignupValidity(); // disable btn again
-        }, 2000);
+            // alert(successMsg); // Removed alert for smoother UX
+            
+            // Redirect
+            window.location.href = 'dashboard.html';
+        }, 1500);
     }
 
     signupForm.addEventListener('submit', (e) => {
@@ -241,4 +281,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (emailRegex.test(loginEmail.value.trim())) setSuccess(loginEmail);
         else setError(loginEmail, "Invalid email");
     });
+
+    /* -------------------------------------------------------------------------- */
+    /*                                Dashboard Logic                             */
+    /* -------------------------------------------------------------------------- */
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            if(confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        });
+    }
+
+    // Dynamic User Name (Mock)
+    const userNameDisplay = document.getElementById('user-name-display');
+    if (userNameDisplay) {
+        userNameDisplay.innerText = "Moiz"; 
+    }
 });
