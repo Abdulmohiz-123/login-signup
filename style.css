@@ -1,0 +1,498 @@
+:root {
+    /* Colors */
+    --primary: #6c5ce7;
+    --primary-dark: #5849c2;
+    --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --backdrop-blur: 15px;
+
+    /* Text */
+    --text-main: #fff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --error: #ff7675;
+    --success: #55efc4;
+    --warning: #ffeaa7;
+
+    /* Neumorphism (Inner Shadow for inputs) */
+    --neu-inner-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.1);
+    --neu-flat-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
+        -5px -5px 10px rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-gradient);
+    overflow: hidden;
+    /* Hide overflow from decorative circles */
+    position: relative;
+}
+
+/* Background Elements */
+.circle {
+    position: absolute;
+    background: radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -50px;
+    left: -50px;
+    animation: floating 8s infinite ease-in-out;
+}
+
+.circle-2 {
+    width: 250px;
+    height: 250px;
+    bottom: -50px;
+    right: -50px;
+    background: radial-gradient(circle at 30% 30%, #a29bfe, #6c5ce7);
+    animation: floating 10s infinite ease-in-out reverse;
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(20px, 30px);
+    }
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    z-index: 1;
+}
+
+/* Glass Card */
+.glass-card {
+    background: var(--glass-bg);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    padding: 40px 30px;
+    overflow: hidden;
+    transition: height 0.4s ease;
+    position: relative;
+}
+
+/* Toggle Box */
+.toggle-box {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--neu-inner-shadow);
+    padding: 5px;
+}
+
+.toggle-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.3s;
+}
+
+.toggle-btn.active {
+    color: var(--text-main);
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: calc(50% - 5px);
+    height: calc(100% - 10px);
+    background: var(--primary);
+    border-radius: 25px;
+    transition: left 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+    z-index: 1;
+}
+
+/* Form Styles */
+.form-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-content.active-form {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-title {
+    color: var(--text-main);
+    font-size: 28px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.form-desc {
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Neumorphic Inputs */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    transition: 0.3s;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 45px 12px 45px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
+    /* Prepare for border transition */
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 15px;
+    box-shadow: var(--neu-inner-shadow);
+    transition: 0.3s;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.input-group input:focus {
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.3), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+}
+
+.input-group input:focus+i {
+    color: var(--primary);
+}
+
+/* Validation Styling */
+.error-msg {
+    display: block;
+    color: var(--error);
+    font-size: 12px;
+    margin-top: 5px;
+    height: 15px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.input-group.error input {
+    border-color: var(--error);
+}
+
+.input-group.success input {
+    border-color: var(--success);
+}
+
+.input-group.error .error-msg {
+    opacity: 1;
+}
+
+/* Password Toggle */
+.toggle-pass {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-muted);
+    left: auto !important;
+}
+
+/* Buttons */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Loader */
+.loader {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+.submit-btn.loading span {
+    display: none;
+}
+
+.submit-btn.loading .loader {
+    display: block;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+
+    75% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+/* Password Strength & Criteria */
+.password-criteria {
+    list-style: none;
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-left: 5px;
+    display: none;
+}
+
+.password-criteria li {
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+
+.password-criteria li.valid {
+    color: var(--success);
+}
+
+.password-criteria li.valid::before {
+    content: '✓';
+    font-weight: bold;
+}
+
+.password-criteria li.invalid::before {
+    content: '•';
+    font-size: 18px;
+    line-height: 10px;
+}
+
+.password-strength {
+    height: 4px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    margin: 10px 0;
+    /* Add some spacing */
+    position: relative;
+    display: none;
+}
+
+.strength-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background 0.3s ease;
+    border-radius: 2px;
+}
+
+.strength-text {
+    position: absolute;
+    right: 0;
+    top: -20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Social Login */
+.social-login {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.social-login p {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.social-login p::before,
+.social-login p::after {
+    content: '';
+    position: absolute;
+    width: 30%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    top: 50%;
+}
+
+.social-login p::before {
+    left: 0;
+}
+
+.social-login p::after {
+    right: 0;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon:hover {
+    background: var(--primary);
+    transform: translateY(-3px);
+}
+
+/* Extra Links */
+.form-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.form-action a {
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.form-action a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .glass-card {
+        padding: 30px 20px;
+    }
+
+    .form-title {
+        font-size: 24px;
+    }
+}

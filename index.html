@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup | Glassmorphism</title>
+    <!-- Google Fonts: Poppins for modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        <!-- Background Elements for Glass Effect -->
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+
+        <div class="glass-card">
+            <!-- Toggle Switch -->
+            <div class="toggle-box">
+                <button class="toggle-btn active" id="login-toggle">Log In</button>
+                <button class="toggle-btn" id="signup-toggle">Sign Up</button>
+                <div class="toggle-slider"></div>
+            </div>
+
+            <!-- Forms Container -->
+            <div class="forms-wrapper">
+                
+                <!-- Login Form -->
+                <form id="login-form" class="form-content active-form">
+                    <h2 class="form-title">Welcome Back</h2>
+                    <p class="form-desc">Please enter your details to sign in.</p>
+                    
+                    <div class="input-group">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="login-email" placeholder="Email Address" required>
+                        <span class="error-msg"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="login-pass" placeholder="Password" required>
+                        <i class="fa-regular fa-eye-slash toggle-pass"></i>
+                        <span class="error-msg"></span>
+                    </div>
+
+                    <div class="form-action">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-pass">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="login-btn">
+                        <span>Log In</span>
+                        <div class="loader"></div>
+                    </button>
+
+                    <div class="social-login">
+                        <p>Or continue with</p>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fa-brands fa-google"></i></a>
+                            <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Signup Form -->
+                <form id="signup-form" class="form-content">
+                    <h2 class="form-title">Create Account</h2>
+                    <p class="form-desc">Join us and start your journey.</p>
+                    
+                    <div class="input-group">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" id="signup-name" placeholder="Full Name" required>
+                        <span class="error-msg"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="signup-email" placeholder="Email Address" required>
+                        <span class="error-msg"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="signup-pass" placeholder="Password" required>
+                        <i class="fa-regular fa-eye-slash toggle-pass"></i>
+                        <span class="error-msg"></span>
+                    </div>
+                    
+                    <!-- Password Strength Indicator -->
+                    <div class="password-strength hide">
+                        <span class="strength-bar"></span>
+                        <span class="strength-text">Weak</span>
+                    </div>
+                    
+                    <ul class="password-criteria">
+                        <li data-criteria="length">At least 8 characters</li>
+                        <li data-criteria="upper">Uppercase letter</li>
+                        <li data-criteria="number">Number</li>
+                        <li data-criteria="special">Special character</li>
+                    </ul>
+
+                    <button type="submit" class="submit-btn" id="signup-btn" disabled>
+                        <span>Sign Up</span>
+                        <div class="loader"></div>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
